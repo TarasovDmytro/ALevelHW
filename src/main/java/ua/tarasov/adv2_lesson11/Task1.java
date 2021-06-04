@@ -1,4 +1,4 @@
-package ua.tarasov.hw11;
+package ua.tarasov.adv2_lesson11;
 
 import java.util.Scanner;
 
