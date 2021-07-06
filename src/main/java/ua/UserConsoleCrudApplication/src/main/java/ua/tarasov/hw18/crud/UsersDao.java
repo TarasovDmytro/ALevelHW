@@ -102,8 +102,7 @@ public class UsersDao {
                 return new ArrayList<>();
             }
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(usersJson, new TypeReference<>() {
-            });
+            return objectMapper.readValue(usersJson, new TypeReference<>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,7 +112,7 @@ public class UsersDao {
     private User getUserById(String id) {
 
         usersList = getUsersFromFile();
-        return usersList.stream().filter(user -> user.getId().equals(id)).findFirst().get();
+        return usersList.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
     }
 
     private String generateId() {
