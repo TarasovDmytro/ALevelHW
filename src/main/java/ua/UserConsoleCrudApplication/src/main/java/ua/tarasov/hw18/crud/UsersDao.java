@@ -54,6 +54,11 @@ public class UsersDao {
 
     public void deleteUserById(String id) {
 
+        removeUserById(id);
+    }
+
+    private void removeUserById(String id) {
+
         usersList = getUsersFromFile();
         usersList.removeIf(user -> user.getId().equals(id));
         writeUsersToFile();
