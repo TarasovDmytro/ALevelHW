@@ -1,4 +1,4 @@
-package ua.tarasov.hw18.crud;
+package ua.tarasov.hw18.crud.dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import ua.tarasov.hw18.crud.service.User;
 
 import java.io.*;
 import java.util.*;

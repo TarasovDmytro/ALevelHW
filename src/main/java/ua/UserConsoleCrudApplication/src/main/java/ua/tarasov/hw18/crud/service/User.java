@@ -1,4 +1,4 @@
-package ua.tarasov.hw18.crud;
+package ua.tarasov.hw18.crud.service;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +7,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
+public
 class User {
 
     private String firstName;

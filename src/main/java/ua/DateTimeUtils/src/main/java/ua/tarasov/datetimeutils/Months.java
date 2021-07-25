@@ -3,7 +3,7 @@ package ua.tarasov.datetimeutils;
 import lombok.Getter;
 
 @Getter
-public enum Months {
+enum Months {
 
     JANUARY("Jan", 1),
     FEBRUARY("Feb", 2),
