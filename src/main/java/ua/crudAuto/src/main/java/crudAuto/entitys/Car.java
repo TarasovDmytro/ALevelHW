@@ -37,6 +37,7 @@ public class Car {
     @Column(name = "fuel_volume")
     private double fuelVolume;
 
+
     public Car(String title, double price, LocalDate manufactureDate, LocalDate sellDate, String gearType, double fuelVolume) {
 
         this.title = title;

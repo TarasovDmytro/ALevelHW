@@ -130,6 +130,7 @@ public class ControllerCar {
             service.updateAuto(carId, currentCar);
         } catch (IOException e) {
             e.printStackTrace();
+
         }
     }
 
