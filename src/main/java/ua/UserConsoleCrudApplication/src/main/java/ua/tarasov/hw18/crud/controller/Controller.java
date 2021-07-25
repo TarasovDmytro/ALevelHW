@@ -1,4 +1,7 @@
-package ua.tarasov.hw18.crud;
+package ua.tarasov.hw18.crud.controller;
+
+import ua.tarasov.hw18.crud.service.User;
+import ua.tarasov.hw18.crud.service.UserService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

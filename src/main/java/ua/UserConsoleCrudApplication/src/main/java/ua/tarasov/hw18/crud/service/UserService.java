@@ -1,8 +1,10 @@
-package ua.tarasov.hw18.crud;
+package ua.tarasov.hw18.crud.service;
+
+import ua.tarasov.hw18.crud.dao.UsersDao;
 
 public class UserService {
 
-    UsersDao userDao = new UsersDao();
+    private final UsersDao userDao = new UsersDao();
 
     public void create(User user) {
         if (!userDao.existByEmail(user.getEmail())) {
