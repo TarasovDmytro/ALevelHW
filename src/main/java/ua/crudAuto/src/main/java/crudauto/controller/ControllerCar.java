@@ -1,7 +1,7 @@
-package crudAuto.controller;
+package crudauto.controller;
 
-import crudAuto.entitys.Car;
-import crudAuto.services.CarService;
+import crudauto.entitys.Car;
+import crudauto.services.CarService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

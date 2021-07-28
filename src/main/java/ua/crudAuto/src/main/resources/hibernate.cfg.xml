@@ -35,7 +35,7 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
-        <mapping class="crudAuto.entitys.Car"/>
+        <mapping class="crudauto.entitys.Car"/>
 
     </session-factory>
 

@@ -1,4 +1,4 @@
-package crudAuto.entitys;
+package crudauto.entitys;
 
 import lombok.Getter;
 import lombok.Setter;

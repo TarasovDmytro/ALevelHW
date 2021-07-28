@@ -1,4 +1,4 @@
-package crudAuto.utils;
+package crudauto.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

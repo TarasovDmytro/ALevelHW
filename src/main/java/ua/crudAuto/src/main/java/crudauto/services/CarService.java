@@ -1,7 +1,7 @@
-package crudAuto.services;
+package crudauto.services;
 
-import crudAuto.dao.DaoCar;
-import crudAuto.entitys.Car;
+import crudauto.dao.DaoCar;
+import crudauto.entitys.Car;
 
 import java.util.List;
 
