@@ -1,5 +1,9 @@
+import utils.MusicManagerInit;
+
 public class MusicManagerAPI {
     public static void main(String[] args) {
-        System.out.println("");
+
+        MusicManagerInit init = new MusicManagerInit();
+        init.musicCascadeInit();
     }
 }
