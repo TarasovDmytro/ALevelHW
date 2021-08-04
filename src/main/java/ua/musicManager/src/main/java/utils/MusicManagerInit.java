@@ -24,8 +24,8 @@ public class MusicManagerInit {
         MusicManagerInit init = new MusicManagerInit();
 //        init.tracksInit();
 //        init.albumsInit();
-//        init.musicInit();
-//        init.orderInit();
+        init.musicInit();
+        init.orderInit();
         init.addManyEntities();
     }
 //    I don’t quite understand why it doesn't work.
