@@ -64,7 +64,7 @@ public class AlbumDao {
 
         List<Album> albums = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            albums = session.createQuery("from Album", Album.class).list();
+            albums = session.createQuery("from entities.Album", Album.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +94,7 @@ public class AlbumDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "DELETE FROM Album ";
+            String hql = "DELETE FROM entities.Album ";
             Query query = session.createQuery(hql);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);
@@ -114,7 +114,6 @@ public class AlbumDao {
             album.getTracks().add(track);
             album.setPrice(album.getPrice() + track.getPrice());
             album.getArtists().add(artist);
-            artist.getAlbums().add(album);
             updateInstance(album);
         } else {
             System.out.println("This track is already on this album");

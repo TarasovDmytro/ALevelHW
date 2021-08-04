@@ -75,7 +75,7 @@ public class CustomerDao {
     public List<Customer> getAllInstance() {
         List<Customer> customers = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            customers = session.createQuery("from Customer", Customer.class).list();
+            customers = session.createQuery("from entities.Customer", Customer.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -105,7 +105,7 @@ public class CustomerDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "DELETE FROM Customer ";
+            String hql = "DELETE FROM entities.Customer ";
             Query query = session.createQuery(hql);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);

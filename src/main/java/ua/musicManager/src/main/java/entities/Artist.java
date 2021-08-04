@@ -1,9 +1,14 @@
 package entities;
 
-import lombok.*;
+import entities.Album;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +26,7 @@ public class Artist {
     @Column(name = "artist_name")
     private String title;
 
-    @ManyToMany(mappedBy = "artists")
+    @ManyToMany(mappedBy = "artists", cascade = CascadeType.ALL)
     private List<Album> albums = new ArrayList<>();
 
     public Artist(String title) {

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
+@BatchSize(size = 50)
 @Table(name = "tracks")
 public class Track {
 
@@ -33,5 +35,13 @@ public class Track {
         this.title = title;
         this.price = price;
         this.artist = artist;
+    }
+
+    public Track(Track track) {
+
+        this.id = track.getId();
+        this.title = track.getTitle();
+        this.price = track.getPrice();
+        this.artist = track.getArtist();
     }
 }

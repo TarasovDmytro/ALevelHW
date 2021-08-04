@@ -1,9 +1,14 @@
 package utils;
 
-import dao.*;
+import dao.AlbumDao;
+import dao.CustomerDao;
+import dao.OrderDao;
+import dao.TrackDao;
 import entities.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MusicManagerInit {
 
@@ -19,8 +24,8 @@ public class MusicManagerInit {
         MusicManagerInit init = new MusicManagerInit();
 //        init.tracksInit();
 //        init.albumsInit();
-        init.musicInit();
-        init.orderInit();
+//        init.musicInit();
+//        init.orderInit();
         init.addManyEntities();
     }
 //    I don’t quite understand why it doesn't work.
@@ -28,20 +33,20 @@ public class MusicManagerInit {
 //
 //    private void tracksInit() {
 //
-//        List<Artist> artists = new ArrayList<>();
-//        artists.add(new Artist("Freddy Mercury"));
-//        artists.add(new Artist("Joan Stingray"));
-//        artists.add(new Artist("Sting"));
-//        artists.add(new Artist("Elton Jon"));
-//        artists.add(new Artist("Sher"));
+//        List<entities.Artist> artists = new ArrayList<>();
+//        artists.add(new entities.Artist("Freddy Mercury"));
+//        artists.add(new entities.Artist("Joan Stingray"));
+//        artists.add(new entities.Artist("Sting"));
+//        artists.add(new entities.Artist("Elton Jon"));
+//        artists.add(new entities.Artist("Sher"));
 //
-//        Artist artist;
-//        Track track = new Track();
+//        entities.Artist artist;
+//        entities.Track track = new entities.Track();
 //        TrackDao trackDao = new TrackDao();
 //        for (int i = 0; i < 30; i++) {
 //
 //            artist = artists.get(random.nextInt(5));
-//            track.setTitle("Track" + (i + 1));
+//            track.setTitle("entities.Track" + (i + 1));
 //            track.setPrice(50 + random.nextInt(50));
 //            track.setArtist(artist);
 //            trackDao.createInstance(track);
@@ -51,12 +56,12 @@ public class MusicManagerInit {
 //    private void albumsInit() {
 //
 //        for (int j = 1; j <= 3; j++) {
-//            Album album = new Album();
-//            album.setTitle("Album" + j);
+//            entities.Album album = new entities.Album();
+//            album.setTitle("entities.Album" + j);
 //            albumDao.createInstance(album);
 //            int count = 0;
 //            while (!(count == 10)){
-//                Track track = trackDao.getInstanceById(1+random.nextInt(29));
+//                entities.Track track = trackDao.getInstanceById(1+random.nextInt(29));
 //                albumDao.addTrackToAlbum(album, track);
 //                count +=1;
 //            }
@@ -76,12 +81,12 @@ public class MusicManagerInit {
 
         for (int j = 1; j <= 3; j++) {
             Album album = new Album();
-            album.setTitle("Album" + j);
+            album.setTitle("entities.Album" + j);
             albumDao.createInstance(album);
             for (int i = 0; i < 9; i++) {
                 Track track = new Track();
                 artist = artists.get(random.nextInt(5));
-                track.setTitle("Track" + j + (i + 1));
+                track.setTitle("entities.Track" + j + (i + 1));
                 track.setPrice(50 + random.nextInt(50));
                 track.setArtist(artist);
                 albumDao.addTrackToAlbum(album, track);

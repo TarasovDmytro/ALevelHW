@@ -75,7 +75,7 @@ public class ArtistDao {
     public List<Artist> getAllInstance() {
         List<Artist> artists = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            artists = session.createQuery("from Artist", Artist.class).list();
+            artists = session.createQuery("from entities.Artist", Artist.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -105,7 +105,7 @@ public class ArtistDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "DELETE FROM Artist ";
+            String hql = "DELETE FROM entities.Artist ";
             Query<? extends Object> query = session.createQuery(hql);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);

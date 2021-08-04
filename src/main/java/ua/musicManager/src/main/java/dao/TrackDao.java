@@ -77,7 +77,7 @@ public class TrackDao {
     public List<Track> getAllInstance() {
         List<Track> tracks = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            tracks = session.createQuery("from Track", Track.class).list();
+            tracks = session.createQuery("from entities.Track", Track.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class TrackDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "DELETE FROM Track ";
+            String hql = "DELETE FROM entities.Track ";
             Query query = session.createQuery(hql);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);
@@ -126,12 +126,12 @@ public class TrackDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             for (int i = 0; i < numberOfEntities; i++) {
-                Track track = new Track("Track" + i, 50, new Artist(("Artist" + i)));
+                Track track = new Track("entities.Track" + i, 50, new Artist(("entities.Artist" + i)));
                 session.save(track);
-                if (i % 50 == 0) {
-                    session.flush();
-                    session.clear();
-                }
+//                if (i % 50 == 0) {
+//                    session.flush();
+//                    session.clear();
+//                }
             }
             transaction.commit();
         } catch (Exception e) {

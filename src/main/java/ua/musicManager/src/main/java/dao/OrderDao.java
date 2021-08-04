@@ -1,6 +1,9 @@
 package dao;
 
-import entities.*;
+import entities.Album;
+import entities.Customer;
+import entities.Order;
+import entities.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -80,7 +83,7 @@ public class OrderDao {
 
         List<Order> orders = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            orders = session.createQuery("from Order", Order.class).list();
+            orders = session.createQuery("from entities.Order", Order.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,7 +113,7 @@ public class OrderDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "DELETE FROM Order ";
+            String hql = "DELETE FROM entities.Order ";
             Query query = session.createQuery(hql);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);
