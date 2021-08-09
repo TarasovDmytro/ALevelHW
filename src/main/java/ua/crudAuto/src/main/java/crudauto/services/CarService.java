@@ -1,7 +1,7 @@
-package crudAuto.services;
+package crudauto.services;
 
-import crudAuto.dao.DaoCar;
-import crudAuto.entitys.Car;
+import crudauto.dao.DaoCar;
+import crudauto.entitys.Car;
 
 import java.util.List;
 
@@ -21,6 +21,7 @@ public class CarService {
     public void updateAuto(int carId, Car currentCar) {
 
         if (actionCar.updateAuto(carId, currentCar)) {
+
             System.out.println("Automobile with id = " + carId + " updated");
         } else {
             System.out.println("Something wrong. Please, try again.");
