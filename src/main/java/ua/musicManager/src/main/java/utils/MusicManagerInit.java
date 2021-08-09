@@ -26,7 +26,9 @@ public class MusicManagerInit {
 //        init.albumsInit();
         init.musicInit();
         init.orderInit();
-        init.addManyEntities();
+//        init.addManyEntities();
+
+        HibernateUtil.shutdown();
     }
 //    I don’t quite understand why it doesn't work.
 //    I haven't found a solution to the problem yet.

@@ -128,10 +128,6 @@ public class TrackDao {
             for (int i = 0; i < numberOfEntities; i++) {
                 Track track = new Track("entities.Track" + i, 50, new Artist(("entities.Artist" + i)));
                 session.save(track);
-//                if (i % 50 == 0) {
-//                    session.flush();
-//                    session.clear();
-//                }
             }
             transaction.commit();
         } catch (Exception e) {
