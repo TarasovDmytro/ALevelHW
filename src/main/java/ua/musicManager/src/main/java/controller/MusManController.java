@@ -1,6 +1,10 @@
 package controller;
 
-import entities.*;
+import entities.Album;
+import entities.Artist;
+import entities.Customer;
+import entities.Order;
+import entities.Track;
 import services.AlbumService;
 import services.CustomerService;
 import services.OrderService;
@@ -50,7 +54,7 @@ public class MusManController {
             System.out.println("\n");
 
             switch (action) {
-                case "1" -> createOrder(customer);
+                case "1" -> this.createOrder(customer);
                 case "2" -> createAlbum(bufferedReader);
                 case "3" -> readOrdersOfCustomer(customer);
                 case "4" -> readAllTracks();
