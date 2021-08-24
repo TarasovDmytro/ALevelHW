@@ -7,15 +7,15 @@ import entities.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.jetbrains.annotations.NotNull;
 import utils.HibernateUtil;
 
 import java.util.List;
 
 public class OrderDao {
 
-    public void createInstance(Order order, Customer customer) {
+    public void createInstance(Order order) {
 
-        order.setCustomerId(customer.getId());
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -46,7 +46,7 @@ public class OrderDao {
         }
     }
 
-    public void updateInstanceById(int id, Order order) {
+    public void updateInstanceById(int id, @NotNull Order order) {
 
         Transaction transaction = null;
         order.setId(id);
@@ -114,7 +114,7 @@ public class OrderDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             String hql = "DELETE FROM entities.Order ";
-            Query query = session.createQuery(hql);
+            var query = session.createQuery(hql);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);
             transaction.commit();
@@ -126,17 +126,43 @@ public class OrderDao {
         }
     }
 
-    public void addTrackToOrder(Order order, Track track) {
+    public Order addTracksToOrder(Order order, List<Track> newTracks) {
 
-        order.getTracks().add(track);
-        order.setPrice(order.getPrice() + track.getPrice());
-        updateInstance(order);
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            newTracks.forEach(track -> {
+                order.getTracks().add(track);
+                order.setPrice(order.getPrice() + track.getPrice());
+            });
+            session.update(order);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return order;
     }
 
-    public void addAlbumToOrder(Order order, Album album) {
+    public Order addAlbumsToOrder(Order order, List<Album> newAlbums) {
 
-        order.getAlbums().add(album);
-        order.setPrice(order.getPrice() + album.getPrice());
-        updateInstance(order);
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            newAlbums.forEach(album -> {
+                order.getAlbums().add(album);
+                order.setPrice(order.getPrice() + album.getPrice());
+            });
+            session.update(order);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return order;
     }
 }
