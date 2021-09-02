@@ -2,10 +2,9 @@ package builders;
 
 import models.Gadget;
 import models.parametersOfGadget.FormFactor;
+import models.parametersOfGadget.TypeOfScreen;
 
 public abstract class GadgetBuilder {
-
-    Gadget gadget;
 
     public abstract GadgetBuilder setTitle(String title);
 
@@ -15,7 +14,7 @@ public abstract class GadgetBuilder {
 
     public abstract GadgetBuilder setPrice(double price);
 
-    public GadgetBuilder setScreen(String typeOfScreen, double sizeOfScreen) {
+    public GadgetBuilder setScreen(TypeOfScreen typeOfScreen, double sizeOfScreen) {
 
         return this;
     }
@@ -24,10 +23,6 @@ public abstract class GadgetBuilder {
 
         return this;
     }
-
-    public Gadget getGadget() {
-
-        return gadget;
-    }
+    public abstract Gadget getGadget();
 }
 

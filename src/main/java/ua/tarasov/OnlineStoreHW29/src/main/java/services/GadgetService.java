@@ -1,34 +1,17 @@
 package services;
 
-import builders.BuildOfGadgetDirector;
-import factories.GadgetFactoryDirector;
+import factories.factoryImpl.GadgetFactoryByRequest;
 import models.Gadget;
 import models.GadgetRequest;
-import models.parametersOfGadget.FormFactor;
 
 public class GadgetService {
 
-    private final BuildOfGadgetDirector director = new BuildOfGadgetDirector();
-    private final GadgetFactoryDirector factoryDirector = new GadgetFactoryDirector();
+    private final GadgetFactoryByRequest gadgetFactory = new GadgetFactoryByRequest();
 
-    public Gadget getGadgetByRequest(GadgetRequest request){
-
-        factoryDirector.setGadgetFactory(request);
-        return factoryDirector.getGadgetFactory().createGadget();
-    }
-
-    public Gadget getGadgetByRequestNoParameters(GadgetRequest request, String title, String manufacturerName,
-                                                  String model, double price, FormFactor formFactor, String typeOfScreen,
-                                                  double sizeOfScreen){
-
-        director.setBuilder(request);
-        return director.getBuilder()
-                .setTitle(title)
-                .setManufacturer(manufacturerName)
-                .setModel(model)
-                .setPrice(price)
-                .setFormFactor(formFactor)
-                .setScreen(typeOfScreen, sizeOfScreen)
-                .getGadget();
+    public Gadget createGadgetByRequest(GadgetRequest request) {
+        gadgetFactory.setRequest(request);
+        Gadget gadget = gadgetFactory.createGadget();
+        System.out.println("\n" + gadget);
+        return gadget;
     }
 }
