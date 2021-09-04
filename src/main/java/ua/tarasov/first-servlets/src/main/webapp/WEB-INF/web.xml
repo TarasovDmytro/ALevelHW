@@ -5,13 +5,13 @@
          version="3.1">
   <display-name>JavaEE Sandbox</display-name>
   <servlet>
-    <servlet-name>visitor-count-servlet</servlet-name>
-    <servlet-class>servlets.VisitorsCountServlet</servlet-class>
+    <servlet-name>visitors-list-servlet</servlet-name>
+    <servlet-class>servlets.VisitorsListServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>visitor-count-servlet</servlet-name>
-    <url-pattern>/visitor-count</url-pattern>
+    <servlet-name>visitors-list-servlet</servlet-name>
+    <url-pattern>/visitors-list</url-pattern>
   </servlet-mapping>
 
 </web-app>

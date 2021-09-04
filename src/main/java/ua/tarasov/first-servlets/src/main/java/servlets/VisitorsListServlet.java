@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VisitorsCountServlet extends HttpServlet {
+public class VisitorsListServlet extends HttpServlet {
 
     private final Map<String, String> visitors = new HashMap<>();
 
