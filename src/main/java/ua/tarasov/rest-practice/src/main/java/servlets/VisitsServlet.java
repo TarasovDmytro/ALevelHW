@@ -41,8 +41,8 @@ public class VisitsServlet extends HttpServlet {
         String visitorDate = req.getParameter("date");
         String visitorCity = req.getParameter("city");
 
-        if (visitorName == null && visitorCity == null && visitorDate == null) {
-            resp.sendError(400, "At least one of the visitor parameters must not be null");
+        if (visitorName == null || visitorCity == null || visitorDate == null) {
+            resp.sendError(400, "Visitor parameters should not be null");
         } else {
             Visit visit = service.postVisit(visitorName, visitorDate, visitorCity);
             resp.setStatus(200);
