@@ -44,9 +44,11 @@ public class VisitsServlet extends HttpServlet {
         if (visitorName == null || visitorCity == null || visitorDate == null) {
             resp.sendError(400, "Visitor parameters should not be null");
         } else {
-            Visit visit = service.postVisit(visitorName, visitorDate, visitorCity);
-            resp.setStatus(200);
-            respBody.println(new Gson().toJson(visit));
+            synchronized (service) {
+                Visit visit = service.postVisit(visitorName, visitorDate, visitorCity);
+                resp.setStatus(200);
+                respBody.println(new Gson().toJson(visit));
+            }
         }
     }
 }
