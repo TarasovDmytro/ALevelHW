@@ -17,7 +17,7 @@ public class StatisticsServlet extends HttpServlet {
         Statistic statistic = Statistic.getStatistic();
 
         resp.setContentType("application/json");
-
+        resp.setStatus(200);
         respBody.println(new Gson().toJson(statistic, statistic.getClass()));
     }
 }

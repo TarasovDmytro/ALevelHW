@@ -3,25 +3,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-  <display-name>JavaEE Sandbox</display-name>
-  <servlet>
-    <servlet-name>visits-servlet</servlet-name>
-    <servlet-class>servlets.VisitsServlet</servlet-class>
-  </servlet>
+    <display-name>JavaEE Sandbox</display-name>
+    <servlet>
+        <servlet-name>visits-servlet</servlet-name>
+        <servlet-class>servlets.VisitsServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>visits-servlet</servlet-name>
-    <url-pattern>/visits</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>visits-servlet</servlet-name>
+        <url-pattern>/visits</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>statistics-servlet</servlet-name>
-    <servlet-class>servlets.StatisticsServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>statistics-servlet</servlet-name>
+        <servlet-class>servlets.StatisticsServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>statistics-servlet</servlet-name>
-    <url-pattern>/statistics</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>statistics-servlet</servlet-name>
+        <url-pattern>/statistics</url-pattern>
+    </servlet-mapping>
 
 </web-app>

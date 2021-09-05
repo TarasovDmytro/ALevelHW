@@ -38,7 +38,7 @@ public class VisitsServlet extends HttpServlet {
         String visitorCity = req.getParameter("city");
         Visit visit = service.postVisit(visitorName, visitorDate, visitorCity);
 
-        resp.setStatus(204);
+        resp.setStatus(200);
         respBody.println(new Gson().toJson(visit));
     }
 }
