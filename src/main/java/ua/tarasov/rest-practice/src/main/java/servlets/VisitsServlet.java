@@ -24,8 +24,7 @@ public class VisitsServlet extends HttpServlet {
 
         List<Visit> visits = service.getVisits();
         if (visits == null) {
-            resp.setStatus(400);
-            respBody.println("Status " + resp.getStatus() + " - No visitors in list");
+            resp.sendError(400, "No visitors in list");
         } else {
             resp.setStatus(200);
             visits.forEach(visit -> respBody.println(new Gson().toJson(visit)));
@@ -43,8 +42,7 @@ public class VisitsServlet extends HttpServlet {
         String visitorCity = req.getParameter("city");
 
         if (visitorName == null && visitorCity == null && visitorDate == null) {
-            resp.setStatus(400);
-            respBody.println("Status " + resp.getStatus() + " - At least one of the visitor parameters must not be null");
+            resp.sendError(400, "At least one of the visitor parameters must not be null");
         } else {
             Visit visit = service.postVisit(visitorName, visitorDate, visitorCity);
             resp.setStatus(200);

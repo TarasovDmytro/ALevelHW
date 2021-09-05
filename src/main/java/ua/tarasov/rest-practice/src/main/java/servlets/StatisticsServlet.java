@@ -15,9 +15,9 @@ public class StatisticsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter respBody = resp.getWriter();
         Statistic statistic = Statistic.getStatistic();
-
         resp.setContentType("application/json");
+
         resp.setStatus(200);
-        respBody.println(new Gson().toJson(statistic, statistic.getClass()));
+        respBody.println(new Gson().toJson(statistic));
     }
 }
