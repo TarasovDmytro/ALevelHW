@@ -28,6 +28,9 @@ public class VisitorsListServlet extends HttpServlet {
         respBody.println("<h3 align=\"center\">Request from: " + ipAddress + "</h3>");
 
         String client = req.getParameter("client");
+        if (client == null) {
+            client = "anonymous user";
+        }
         respBody.println("<h2 align=\"center\">Hi, " + client + " </h2>");
 
         visitors.put(ipAddress, bodyUA);

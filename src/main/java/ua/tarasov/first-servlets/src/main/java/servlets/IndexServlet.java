@@ -11,14 +11,14 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String client = req.getParameter("client");
         if (client == null) {
             client = "anonymous user";
         }
-        String indexServlet = "/visitor-count?client=" + client;
-//        resp.sendRedirect(req.getContextPath() + indexServlet);
-        getServletContext().getRequestDispatcher(indexServlet).forward(req, resp);
+        String indexServlet = "/visitors-list?client=" + client;
+        resp.sendRedirect(req.getContextPath() + indexServlet);
+//        getServletContext().getRequestDispatcher(indexServlet).forward(req, resp);
     }
 }
 
