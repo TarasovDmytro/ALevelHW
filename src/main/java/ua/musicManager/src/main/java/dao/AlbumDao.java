@@ -5,14 +5,13 @@ import entities.Artist;
 import entities.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
 import java.util.List;
 
 public class AlbumDao {
 
-    public void createInstance(Album album) {
+    public Album createInstance(Album album) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -25,6 +24,7 @@ public class AlbumDao {
             }
             e.printStackTrace();
         }
+        return album;
     }
 
     public void updateInstance(Album album) {
@@ -40,6 +40,7 @@ public class AlbumDao {
             }
             e.printStackTrace();
         }
+        HibernateUtil.shutdown();
     }
 
     public Album getInstanceById(int id) {
@@ -95,7 +96,7 @@ public class AlbumDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             String hql = "DELETE FROM entities.Album ";
-            Query query = session.createQuery(hql);
+            var query = session.createQuery(hql);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);
             transaction.commit();
@@ -107,20 +108,32 @@ public class AlbumDao {
         }
     }
 
-    public void addTrackToAlbum(Album album, Track track) {
+    public Album addTracksToAlbum(Album album, List<Track> newTracks) {
 
-        if (!album.getTracks().contains(track)) {
-            Artist artist = track.getArtist();
-            album.getTracks().add(track);
-            album.setPrice(album.getPrice() + track.getPrice());
-            album.getArtists().add(artist);
-            updateInstance(album);
-        } else {
-            System.out.println("This track is already on this album");
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            newTracks.forEach(track -> {
+                        Artist artist = track.getArtist();
+                        album.getTracks().add(track);
+                        album.setPrice(album.getPrice() + track.getPrice());
+                        if (!album.getArtists().contains(artist)) {
+                            album.getArtists().add(artist);
+                            artist.getAlbums().add(album);
+                        }
+                    });
+            session.update(album);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
         }
+        return album;
     }
 
-    public void deleteTrackFromAlbum(Album album, Track track) {
+    public Album deleteTrackFromAlbum(Album album, Track track) {
 
         if (album.getTracks().contains(track)) {
             album.getTracks().remove(track);
@@ -129,5 +142,6 @@ public class AlbumDao {
         } else {
             System.out.println("There is no such track in this album");
         }
+        return album;
     }
 }
