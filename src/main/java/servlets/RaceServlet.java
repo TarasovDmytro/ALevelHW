@@ -1,6 +1,6 @@
 package servlets;
 
-import Controllers.RaceController;
+import controllers.RaceController;
 import entities.Horse;
 import entities.Race;
 
@@ -34,7 +34,10 @@ public class RaceServlet extends HttpServlet {
                     respBody.println("<p><b>Place " + (i + 1) + " - " + horses.get(i) + "</b></p>");
                 }
             } else resp.sendError(400, "There is no such race");
-        } else resp.sendError(400, "Bad request");
+        } else {
+            respBody.println("<h3 align=\"center\">Your bet has been accepted...</h3>");
+            doPost(req, resp);
+        }
     }
 
     @Override
@@ -43,17 +46,21 @@ public class RaceServlet extends HttpServlet {
         resp.setContentType("text/html");
 
         int playHorseNumber = Integer.parseInt(req.getParameter("horse-number"));
-        int horsesTotal = Integer.parseInt(req.getParameter("horses-total"));
+        int horsTotal = Integer.parseInt(req.getParameter("horses-total"));
+        Race race;
 
-        if (playHorseNumber < 1 || playHorseNumber > horsesTotal) {
+        if (playHorseNumber < 1 || playHorseNumber > horsTotal) {
             resp.sendError(400, "The number of the horse playing cannot be less than 1 or more than the number" +
                     " of horses participating in the race");
         } else {
             synchronized (controller) {
-                controller.startRace(horsesTotal, playHorseNumber);
-                resp.setStatus(200);
-                respBody.println("Congratulations! The race has begun!");
+                race = controller.startRace(horsTotal, playHorseNumber);
             }
+            resp.setStatus(200);
+            respBody.println("<h1 align=\"center\">Congratulations! The race has begun!</h1>");
+            respBody.println("<p><b>Your race:</b></p>");
+            respBody.println(race);
         }
     }
 }
+

@@ -53,10 +53,7 @@ public class StatisticOfRacesUtil {
 
     @Override
     public String toString() {
-        return "StatisticOfRacesUtil{" +
-                "currentDate='" + currentDate + '\'' +
-                ", totalRaces=" + totalRaces +
-                ", racesPlaces=" + racesPlaces +
-                '}';
+        return "current date - " + currentDate +
+                ", total races = " + totalRaces;
     }
 }

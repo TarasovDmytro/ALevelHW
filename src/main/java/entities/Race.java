@@ -44,16 +44,15 @@ public class Race {
     }
 
     public Race() {
-
     }
 
     @Override
     public String toString() {
-        return "Race{" +
+        return "Race{ " +
                 "id = " + id +
                 ", date = '" + date + '\'' +
                 ", horsesTotal = " + horsesTotal +
                 ", playHorseId = " + playHorseId +
-                '}';
+                " }";
     }
 }

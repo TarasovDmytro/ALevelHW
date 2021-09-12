@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>JavaEE Race</display-name>
+
     <servlet>
         <servlet-name>race-servlet</servlet-name>
         <servlet-class>servlets.RaceServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>race-servlet</servlet-name>
         <url-pattern>/horse-race/race/*</url-pattern>
@@ -18,7 +18,6 @@
         <servlet-name>races-statistics-servlet</servlet-name>
         <servlet-class>servlets.StatOfRacesServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>races-statistics-servlet</servlet-name>
         <url-pattern>/horse-race/stats</url-pattern>

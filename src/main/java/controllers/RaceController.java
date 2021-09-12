@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import entities.Horse;
 import entities.Race;
@@ -7,7 +7,6 @@ import services.RaceService;
 import utils.StatisticOfRacesUtil;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -18,9 +17,9 @@ public class RaceController {
 
     private final RaceService raceService = new RaceService();
     private final HorseService horseService = new HorseService();
-    private ReentrantLock reentrantLock = new ReentrantLock();
+    private final ReentrantLock reentrantLock = new ReentrantLock();
 
-    public void startRace(int numberOfHorses, int playHorseId) {
+    public Race startRace(int numberOfHorses, int playHorseId) {
         var race = new Race(numberOfHorses, playHorseId);
         raceService.createRace(race);
         while (horseService.getAllHorses().size() < numberOfHorses || horseService.getAllHorses() == null) {
@@ -40,6 +39,7 @@ public class RaceController {
             });
         }
         executor.shutdown();
+        return race;
     }
 
     private void horseRun(Horse horse, Race race) throws InterruptedException {

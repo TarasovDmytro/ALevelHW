@@ -1,10 +1,8 @@
 package servlets;
 
-import Controllers.RaceController;
-import com.google.gson.Gson;
+import controllers.RaceController;
 import utils.StatisticOfRacesUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,14 +16,16 @@ public class StatOfRacesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter respBody = resp.getWriter();
-        resp.setContentType("application/json");
+        resp.setContentType("text/html");
 
         StatisticOfRacesUtil statistic = controller.getStatisticOfRaces();
 
         if (statistic == null || statistic.getTotalRaces() == 0) {
             resp.sendError(400, "Races have not yet taken place");
         } else {
-            respBody.println(new Gson().toJson(statistic));
+            respBody.println("<p><b>" + statistic + "</b></p>");
+            respBody.println("<p>Place in races:</p>");
+            statistic.getRacesPlaces().forEach((key, value) -> respBody.println("<p>" + key + " - place = " + value + "</p>"));
         }
     }
 }
